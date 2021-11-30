@@ -4,9 +4,7 @@ import com.vlad.note.domain.User;
 import com.vlad.note.repos.UserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 @Controller // This means that this class is a Controller
 @RequestMapping(path="/user") // This means URL's start with /demo (after Application path)
@@ -21,5 +19,22 @@ public class MainController {
         // This returns a JSON or XML with the users
         return userRepository.findAll();
     }
+    @CrossOrigin(origins = "http://localhost:4200")
+    @PostMapping(path="/login")
+    public @ResponseBody User loginUser(@RequestBody User user) throws Exception{
 
+        User user1=userRepository.findByLogin(user.getLogin());
+        if(user1!=null){
+            System.out.println("aassssssssssss");
+            if(user1.getPassword().equalsIgnoreCase(user.getPassword())){
+                return user1;
+            }
+        }
+
+        throw new Exception("bad request");
+    }
+    @PostMapping(path = "/logtest")
+    public @ResponseBody String loginUser(@RequestBody String user) throws Exception{
+    return user;
+    }
 }

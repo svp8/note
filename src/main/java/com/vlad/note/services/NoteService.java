@@ -20,8 +20,14 @@ public class NoteService {
         return noteRepo.findById(id).orElse(null);
     }
     public String deleteNote(int id){
-        noteRepo.deleteById(id);
-        return "deleted"+id;
+        Note note=noteRepo.findById(id).orElse(null);
+        if(note!=null){
+            noteRepo.deleteById(id);
+            return "deleted "+id;
+        }
+        else {
+            throw new RuntimeException("Wrong id");
+        }
     }
     public Note updateNote(Note note){
         Note oldNote=noteRepo.findById(note.getNote_id()).orElse(null);
@@ -30,4 +36,5 @@ public class NoteService {
         oldNote.setDate(LocalDateTime.now());
         return noteRepo.save(oldNote);
     }
+
 }

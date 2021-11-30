@@ -29,4 +29,12 @@ public class User {
     public void setLogin(String login) {
         this.login = login;
     }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
 }
