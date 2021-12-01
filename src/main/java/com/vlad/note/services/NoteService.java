@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
-
+//Работа с бд
 @Service
 public class NoteService {
     @Autowired
@@ -19,7 +19,8 @@ public class NoteService {
     public Note getNoteById(int id){
         return noteRepo.findById(id).orElse(null);
     }
-    public String deleteNote(int id){
+    public String deleteNote(int id) throws RuntimeException
+    {
         Note note=noteRepo.findById(id).orElse(null);
         if(note!=null){
             noteRepo.deleteById(id);

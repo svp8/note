@@ -1,5 +1,7 @@
 package com.vlad.note.domain;
 
+import org.hibernate.annotations.DynamicUpdate;
+
 import javax.persistence.*;
 import java.time.LocalDateTime;
 
@@ -10,7 +12,8 @@ public class Note {
     private Integer note_id;
     @Column(nullable = false)
     private String header;
-    @Column(nullable = false)
+    @Lob
+    @Column(nullable = false, columnDefinition = "text",length=512)
     private String text;
     @Column(nullable = false)
     private String user_id;

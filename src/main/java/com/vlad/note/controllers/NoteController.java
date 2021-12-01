@@ -18,7 +18,7 @@ public class NoteController {
     @Autowired
     private NoteService service;
 
-
+//Поиск Заметок конкретного пользователя
     @GetMapping(path="/note/all/{id}")
     public Iterable<Note> getAllNotes(@PathVariable String id) {
         // This returns a JSON or XML with the all notes
@@ -33,26 +33,24 @@ public class NoteController {
         return notes;
 
     }
-//    @GetMapping(path="/note/all/{id}")
-//    public Iterable<Note> getAllUserNotes(@PathVariable String id) {
-//        // This returns a JSON or XML with the all notes
-//        Iterable<Note> notes=noteRepo.findByUser(id);
-//        return notes;
-//    }
+//Добавление заметки
     @PostMapping(path="/note/save")
     public Note addNote(@RequestBody Note note){
         return service.saveNote(note);
     }
+//    Поиск заметки по id
     @GetMapping(path="/note/get/{id}")
     public Note findNoteById(@PathVariable int id) {
         //
         return service.getNoteById(id);
     }
+//    Изменение заметки
     @PutMapping(path="/note/update")
     public Note updateNote(@RequestBody Note note) {
         //
         return service.updateNote(note);
     }
+//    Удаление заметки
     @DeleteMapping(path="/note/delete/{id}")
     public String deleteNote(@PathVariable String id) {
         //

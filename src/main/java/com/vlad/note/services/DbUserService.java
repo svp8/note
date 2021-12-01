@@ -11,6 +11,7 @@ import org.springframework.stereotype.Component;
 
 import java.util.Arrays;
 import java.util.List;
+//Проверка пользователей для basic авторизации
 @Component
 public class DbUserService implements UserDetailsService {
     @Autowired
